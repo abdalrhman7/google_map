@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_dotenv/flutter_dotenv.dart';
+
+
+import 'features/google_map/ui/google_map_screen.dart';
 
 void main()async {
-  await dotenv.load(fileName: ".env");
+  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
   runApp(const GoogleMapsApp());
 }
 
@@ -17,7 +19,7 @@ class GoogleMapsApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-     // home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const GoogleMapScreen(),
     );
   }
 }

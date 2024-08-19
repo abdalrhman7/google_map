@@ -23,6 +23,10 @@ if (flutterVersionName == null) {
     flutterVersionName = "1.0"
 }
 
+Properties properties = new Properties()
+properties.load(project.rootProject.file('local.properties').newDataInputStream())
+def googleApiKey = properties.getProperty('google_api_key')
+
 android {
     namespace = "com.example.google_maps"
     compileSdk = flutter.compileSdkVersion
@@ -38,10 +42,11 @@ android {
         applicationId = "com.example.google_maps"
         // You can update the following values to match your application needs.
         // For more information, see: https://docs.flutter.dev/deployment/android#reviewing-the-gradle-build-configuration.
-        minSdkVersion 20
+        minSdkVersion flutter.minSdkVersion
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
+        manifestPlaceholders = [googleApiKey: googleApiKey, applicationName: "google"]
     }
 
     buildTypes {
