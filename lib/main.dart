@@ -1,10 +1,12 @@
 import 'package:flutter/material.dart';
-
-
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'features/google_map/logic/google_map_cubit.dart';
 import 'features/google_map/ui/google_map_screen.dart';
 
-void main()async {
-  WidgetsFlutterBinding.ensureInitialized(); // Required by FlutterConfig
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await dotenv.load(fileName: ".env");
   runApp(const GoogleMapsApp());
 }
 
@@ -19,7 +21,10 @@ class GoogleMapsApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const GoogleMapScreen(),
+      home: BlocProvider(
+        create: (context) => GoogleMapCubit(),
+        child: const GoogleMapScreen(),
+      ),
     );
   }
 }
