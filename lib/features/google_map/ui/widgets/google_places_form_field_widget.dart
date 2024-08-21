@@ -3,6 +3,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
 
 class GooglePlacesFormFieldWidget extends StatefulWidget {
@@ -55,13 +56,16 @@ class _GooglePlacesFormFieldWidgetState
       ),
       googleAPIKey: dotenv.env['google_api_key']!,
       debounceTime: 400,
-      countries: const ["EG", "QA"],
+      countries: const ['EG'],
       isLatLngRequired: true,
       onChanged: (value) {
-        setState(() {});
+        widget.cubit.googleMapAutoCompleteController.text = value;
       },
       getPlaceDetailWithLatLng: (prediction) {
-        widget.cubit.goToSearchedLocation(prediction);
+        widget.cubit.googleMapAutoCompleteController.clear();
+        FocusScope.of(context).unfocus();
+        LatLng latLng = LatLng(double.parse(prediction.lat!), double.parse(prediction.lng!));
+        widget.cubit.goToSearchedLocation(latLng);
       },
       itmClick: (prediction) {
         widget.cubit.googleMapAutoCompleteController.text =

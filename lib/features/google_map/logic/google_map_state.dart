@@ -6,3 +6,14 @@ sealed class GoogleMapState {}
 final class GoogleMapInitial extends GoogleMapState {}
 
 final class UpdateCurrentLocation extends GoogleMapState {}
+
+final class LocationServiceExceptionError extends GoogleMapState {
+
+  final String errorMessage;
+  LocationServiceExceptionError(this.errorMessage);
+}
+
+final class LocationPermissionExceptionError extends GoogleMapState {
+  final String errorMessage;
+  LocationPermissionExceptionError(this.errorMessage);
+}

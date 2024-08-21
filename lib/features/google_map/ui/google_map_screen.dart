@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps/features/google_map/ui/widgets/custom_alert_dialog.dart';
 import 'package:google_maps/features/google_map/ui/widgets/go_to_current_location_widget.dart';
+import 'package:google_maps/features/google_map/ui/widgets/location_permission_error_bloc_builder.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
+import 'package:permission_handler/permission_handler.dart';
 
 import 'widgets/google_places_form_field_widget.dart';
-
 
 class GoogleMapScreen extends StatelessWidget {
   const GoogleMapScreen({super.key});
@@ -39,10 +41,14 @@ class GoogleMapScreen extends StatelessWidget {
             left: 16,
             bottom: 40,
             child: GoToCurrentLocationWidget(cubit: cubit),
-          )
+          ),
+          LocationPermissionErrorBlocBuilder(cubit: cubit),
         ],
       ),
     );
   }
 }
+
+
+
 
