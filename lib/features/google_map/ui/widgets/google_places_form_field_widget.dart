@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
-import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
 
@@ -22,7 +22,7 @@ class _GooglePlacesFormFieldWidgetState
   Widget build(BuildContext context) {
     var cubit = context.read<GoogleMapCubit>();
     return GooglePlacesAutoCompleteTextFormField(
-      textEditingController: cubit.googleMapAutoCompleteController,
+      textEditingController: cubit.searchController,
       textInputAction: TextInputAction.done,
       decoration: InputDecoration(
         isDense: true,
@@ -40,11 +40,11 @@ class _GooglePlacesFormFieldWidgetState
           color: Colors.grey,
         ),
         hintText: 'Search Location',
-        suffixIcon: cubit.googleMapAutoCompleteController.text.isEmpty
+        suffixIcon: cubit.searchController.text.isEmpty
             ? const Icon(Icons.search , size: 22,)
             : InkWell(
           onTap: () {
-            cubit.googleMapAutoCompleteController.clear();
+            cubit.searchController.clear();
             setState(() {});
           },
           child: const Icon(Icons.close , color: Colors.red, size: 22,),
@@ -57,18 +57,18 @@ class _GooglePlacesFormFieldWidgetState
       countries: const ['EG'],
       isLatLngRequired: true,
       onChanged: (value) {
-        cubit.googleMapAutoCompleteController.text = value;
+        cubit.searchController.text = value;
       },
       getPlaceDetailWithLatLng: (prediction) {
-        cubit.googleMapAutoCompleteController.clear();
+        cubit.searchController.clear();
         FocusScope.of(context).unfocus();
         LatLng latLng = LatLng(double.parse(prediction.lat!), double.parse(prediction.lng!));
         cubit.goToSearchedLocation(latLng);
       },
       itmClick: (prediction) {
-        cubit.googleMapAutoCompleteController.text =
+        cubit.searchController.text =
         prediction.description!;
-        cubit.googleMapAutoCompleteController.selection =
+        cubit.searchController.selection =
             TextSelection.fromPosition(
                 TextPosition(offset: prediction.description!.length));
       },

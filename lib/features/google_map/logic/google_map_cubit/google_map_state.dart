@@ -24,14 +24,4 @@ final class ClearPolyLines extends GoogleMapState {}
 
 final class DrawLine extends GoogleMapState {}
 
-final class WeatherLoading extends GoogleMapState {}
 
-final class WeatherLoaded extends GoogleMapState {
-  final WeatherModel weatherModel;
-  WeatherLoaded(this.weatherModel);
-}
-
-final class WeatherError extends GoogleMapState {
-  final String errorMessage;
-  WeatherError(this.errorMessage);
-}

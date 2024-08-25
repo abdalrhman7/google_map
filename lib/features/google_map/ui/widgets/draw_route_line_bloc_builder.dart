@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 
 class DrawRouteLineBlocBuilder extends StatelessWidget {
   const DrawRouteLineBlocBuilder({
@@ -20,7 +20,7 @@ class DrawRouteLineBlocBuilder extends StatelessWidget {
         return cubit.isSearched
             ? GetDirectionsOrCancelDirections(
                 title: 'Directions',
-                onPressed: cubit.drawLine,
+                onPressed: cubit.drawLineAndMoveCamera,
               )
             : cubit.isLineDrawn
                 ? GetDirectionsOrCancelDirections(
@@ -80,7 +80,8 @@ class GetDirectionsOrCancelDirections extends StatelessWidget {
                 style: const TextStyle(
                     fontSize: 16,
                     fontWeight: FontWeight.w500,
-                    color: Colors.white),
+                    color: Colors.white
+                ),
               ),
             ],
           ),

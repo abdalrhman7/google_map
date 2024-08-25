@@ -2,7 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 
 class GoToCurrentLocationWidget extends StatelessWidget {
   const GoToCurrentLocationWidget({

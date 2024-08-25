@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:google_maps/core/di/dependancy_injection.dart';
-import 'features/google_map/logic/google_map_cubit.dart';
+import 'package:google_maps/features/google_map/data/repos/weather_repo.dart';
+import 'features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
+import 'features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'features/google_map/ui/google_map_screen.dart';
 
 void main() async {
@@ -23,8 +25,11 @@ class GoogleMapsApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.blueAccent),
         useMaterial3: true,
       ),
-      home: BlocProvider(
-        create: (context) => GoogleMapCubit(getIt()),
+      home: MultiBlocProvider(
+        providers: [
+          BlocProvider(create: (context) => GoogleMapCubit()),
+          BlocProvider(create: (context) => GetWeatherCubit(getIt<WeatherRepo>())),
+        ],
         child: const GoogleMapScreen(),
       ),
     );

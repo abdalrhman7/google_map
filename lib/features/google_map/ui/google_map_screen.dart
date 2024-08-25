@@ -1,6 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
+import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps/features/google_map/ui/widgets/distance_and_duration_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/draw_route_line_bloc_builder.dart';
+import 'package:google_maps/features/google_map/ui/widgets/get_weather_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/go_to_current_location_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/google_map_bloc_builder.dart';
 import 'package:google_maps/features/google_map/ui/widgets/location_permission_error_bloc_builder.dart';
@@ -26,7 +30,17 @@ class GoogleMapScreen extends StatelessWidget {
           ),
           DrawRouteLineBlocBuilder(),
           LocationPermissionErrorBlocBuilder(),
-          DistanceAndDurationWidget()
+          PositionedDistanceAndDurationWidget(
+            right: 20,
+            icon: Icons.directions_car_filled,
+            isDistance: true,
+          ),
+          PositionedDistanceAndDurationWidget(
+            left: 20,
+            icon: Icons.access_time_filled_outlined,
+            isDistance: false,
+          ),
+          GetWeatherWidget()
         ],
       ),
     );
