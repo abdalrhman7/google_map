@@ -10,13 +10,12 @@ import 'custom_alert_dialog.dart';
 class LocationPermissionErrorBlocBuilder extends StatelessWidget {
   const LocationPermissionErrorBlocBuilder({
     super.key,
-    required this.cubit,
   });
 
-  final GoogleMapCubit cubit;
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<GoogleMapCubit>();
     return BlocBuilder<GoogleMapCubit, GoogleMapState>(
       buildWhen: (previous, current) => current is LocationServiceExceptionError || current is LocationPermissionExceptionError,
       builder: (context, state) {

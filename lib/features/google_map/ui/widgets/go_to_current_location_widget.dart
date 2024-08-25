@@ -1,18 +1,18 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit.dart';
 
 class GoToCurrentLocationWidget extends StatelessWidget {
   const GoToCurrentLocationWidget({
     super.key,
-    required this.cubit,
   });
 
-  final GoogleMapCubit cubit;
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<GoogleMapCubit>();
     return InkWell(
       onTap: () {
         cubit.updateCurrentLocation();
