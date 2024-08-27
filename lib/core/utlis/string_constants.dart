@@ -6,4 +6,7 @@ class StringConstants{
   static const String yourLocation = 'Your Location';
   static const String searchedLocation = 'Searched Location';
   static const String currentTemp = 'Temp:';
+  static const String gettingWeather = 'Getting Weather...';
+  static const String appSettings = 'App Settings';
+  static const String myAddresses = 'My Addresses';
 }

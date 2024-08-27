@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
-import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
+import 'package:google_maps/core/widgets/custom_drawer.dart';
 import 'package:google_maps/features/google_map/ui/widgets/distance_and_duration_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/draw_route_line_bloc_builder.dart';
 import 'package:google_maps/features/google_map/ui/widgets/get_weather_widget.dart';
@@ -16,12 +14,19 @@ class GoogleMapScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
+      drawer: CustomDrawer(),
       body: Stack(
         children: [
           GoogleMapBlocBuilder(),
           Padding(
-            padding: EdgeInsets.only(top: 66, left: 20, right: 20),
-            child: GooglePlacesFormFieldWidget(),
+            padding: EdgeInsets.only(top: 66, left: 14, right: 14),
+            child: Row(
+              children: [
+                OpenDrawerButton(),
+                SizedBox(width: 6),
+                Expanded(child: GooglePlacesFormFieldWidget()),
+              ],
+            ),
           ),
           Positioned(
             left: 16,
@@ -48,3 +53,27 @@ class GoogleMapScreen extends StatelessWidget {
 }
 
 
+
+class OpenDrawerButton extends StatelessWidget {
+  const OpenDrawerButton({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return GestureDetector(
+      onTap: () => Scaffold.of(context).openDrawer(),
+      child: Container(
+        height: 50,
+        width: 48,
+        decoration: BoxDecoration(
+            color: Colors.white,
+            shape: BoxShape.circle,
+            border: Border.all(
+              color: Colors.grey,
+            )),
+        child: const Icon(Icons.menu),
+      ),
+    );
+  }
+}

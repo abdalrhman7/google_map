@@ -34,7 +34,7 @@ class WeatherLoadingPositionedWidget extends StatelessWidget {
       right: 16,
       bottom: 100,
       child: Container(
-        height: 60,
+        height: 50,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -44,7 +44,7 @@ class WeatherLoadingPositionedWidget extends StatelessWidget {
             width: 1.2,
           ),
         ),
-        child: const CircularProgressIndicator(),
+        child: const Text(StringConstants.gettingWeather, style: TextStyle(fontSize: 16)),
       ),
     );
   }

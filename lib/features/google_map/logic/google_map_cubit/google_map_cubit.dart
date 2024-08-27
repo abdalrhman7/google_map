@@ -82,6 +82,7 @@ class GoogleMapCubit extends Cubit<GoogleMapState> {
         polylineId: const PolylineId('route'),
         color: Colors.blue,
         points: result.points.map((e) => LatLng(e.latitude, e.longitude)).toList(),
+        width: 6,
       ));
       _moveCameraToFitPolyline(result.points);
     }
@@ -111,7 +112,7 @@ class GoogleMapCubit extends Cubit<GoogleMapState> {
 
       bounds = LatLngBounds(southwest: southwest, northeast: northeast);
     }
-    mapController!.animateCamera(CameraUpdate.newLatLngBounds(bounds, 40));
+    mapController!.animateCamera(CameraUpdate.newLatLngBounds(bounds, 34));
   }
 
 
