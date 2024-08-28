@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_secure_storage/flutter_secure_storage.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class SharedPrefHelper {
@@ -26,6 +25,11 @@ class SharedPrefHelper {
       default:
         return null;
     }
+  }
+  static setList(String key, value) async {
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    debugPrint("SharedPrefHelper : setData with key : $key and value : $value");
+    await sharedPreferences.setStringList(key, value);
   }
 
   /// Gets a bool value from SharedPreferences with given [key].
@@ -54,6 +58,13 @@ class SharedPrefHelper {
     debugPrint('SharedPrefHelper : getString with key : $key');
     SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
     return sharedPreferences.getString(key) ?? '';
+  }
+
+  /// Gets an List<String> value from SharedPreferences with given [key].
+  static getList(String key) async {
+    debugPrint('SharedPrefHelper : getList with key : $key');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    return sharedPreferences.getStringList(key) ?? [];
   }
 
 

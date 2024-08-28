@@ -34,7 +34,8 @@ class WeatherLoadingPositionedWidget extends StatelessWidget {
       right: 16,
       bottom: 100,
       child: Container(
-        height: 50,
+        height: 54,
+        alignment: Alignment.center,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
           color: Colors.white,
@@ -61,7 +62,8 @@ class WeatherLoadedPositionedWidget extends StatelessWidget {
       right: 16,
       bottom: 100,
       child: Container(
-        height: 50,
+        height: 54,
+        alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
           color: Colors.white,

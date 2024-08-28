@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/routing/routes.dart';
+import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 import 'package:google_maps/features/addresses/ui/widgets/address_card_widget.dart';
 
 class MyAddressesScreen extends StatelessWidget {
@@ -7,7 +10,7 @@ class MyAddressesScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    //var cubit = context.read<GetAddressCubit>();
+    var cubit = context.read<ManageAddressCubit>();
     return Scaffold(
       appBar: AppBar(
         title: const Text('Addresses'),
@@ -19,19 +22,16 @@ class MyAddressesScreen extends StatelessWidget {
           children: [
             Expanded(
               child: ListView.builder(
-                  itemBuilder: (context, index) {
-                    return const AddressCardWidget(
-
-                    );
-                  },
-                  itemCount: 3,
+                itemBuilder: (context, index) {
+                  return const AddressCardWidget();
+                },
+                itemCount: 3,
               ),
             ),
             const SizedBox(height: 18),
             InkWell(
               onTap: () async {
-                // var result =
-                //     await context.pushNamed(Routes.addAddressScreen);
+                var result = await context.pushNamed(Routes.addAddressScreen , arguments:cubit);
                 // if (result != null) {
                 //   cubit.getAddressData();
                 // }
@@ -51,7 +51,7 @@ class MyAddressesScreen extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height:18),
+            const SizedBox(height: 18),
           ],
         ),
       ),
