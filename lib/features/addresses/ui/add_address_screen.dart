@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/core/widgets/base_text_form_field.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 
@@ -12,7 +13,7 @@ class AddAddressScreen extends StatelessWidget {
      var cubit = context.read<ManageAddressCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Add New Address'),
+        title: const Text(StringConstants.addNewAddress),
       ),
       body: Form(
         key: cubit.formKey,
@@ -22,16 +23,16 @@ class AddAddressScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               const Text(
-                'Street',
+                StringConstants.street,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: 'enterYourStreetName',
+                hintText: StringConstants.enterYourStreetName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return 'Street Name Cannot Be Empty';
+                    return StringConstants.streetNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -43,16 +44,16 @@ class AddAddressScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'City',
+                StringConstants.city,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: 'Enter Your City Name',
+                hintText: StringConstants.enterYourCityName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return 'City Name Cannot Be Empty';
+                    return StringConstants.cityNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -64,16 +65,16 @@ class AddAddressScreen extends StatelessWidget {
               ),
               const SizedBox(height: 10),
               const Text(
-                'Country',
+                StringConstants.country,
                 style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: 'Country Your City Name',
+                hintText: StringConstants.cityNameCannotBeEmpty,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return 'Country Name Cannot Be Empty';
+                    return StringConstants.countryNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -99,7 +100,7 @@ class AddAddressScreen extends StatelessWidget {
                     borderRadius: BorderRadius.circular(12),
                   ),
                   child: const Text(
-                    'Add Address',
+                    StringConstants.addAddress,
                     style: TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,

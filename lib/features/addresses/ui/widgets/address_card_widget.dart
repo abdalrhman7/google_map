@@ -1,58 +1,93 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/utlis/string_constants.dart';
+import 'package:google_maps/features/addresses/data/model/address_model.dart';
+import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 
 class AddressCardWidget extends StatelessWidget {
   const AddressCardWidget({
     super.key,
+    required this.savedAddresses,
+    required this.addressIndex,
   });
+
+  final AddressModel savedAddresses;
+
+  final int addressIndex;
 
   @override
   Widget build(BuildContext context) {
+    var cubit = context.read<ManageAddressCubit>();
     return Card(
       child: Column(
         children: [
-          const ListTile(
+          ListTile(
             title: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Street',
-                  style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w500),
+                  savedAddresses.streetName,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                  ),
                 ),
-                SizedBox(height: 4),
+                const SizedBox(height: 4),
                 Text(
-                  'City',
-                  style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w500 , color: Colors.grey),
+                  savedAddresses.cityName,
+                  style: const TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.grey,
+                  ),
                 ),
               ],
             ),
             subtitle: Text(
-              'country',
-              style: TextStyle(fontSize: 14 , fontWeight: FontWeight.w500 , color: Colors.grey),
+              savedAddresses.countryName,
+              style: const TextStyle(
+                fontSize: 14,
+                fontWeight: FontWeight.w500,
+                color: Colors.grey,
+              ),
             ),
           ),
           Row(
             children: [
               TextButton.icon(
-                onPressed: () async{
+                onPressed: () async {
                   // var result = await context.pushNamed(Routes.addAddressScreen, arguments: addressesModel);
                   // if (result != null) {
                   //   cubit.getAddressData();
                   // }
                 },
-                icon: const Icon(Icons.edit , color: Colors.green,) ,
+                icon: const Icon(
+                  Icons.edit,
+                  color: Colors.green,
+                ),
                 label: const Text(
-                  'Edit',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.green),
+                  StringConstants.edit,
+                  style: TextStyle(
+                      fontSize: 14,
+                      fontWeight: FontWeight.w500,
+                      color: Colors.green),
                 ),
               ),
               TextButton.icon(
                 onPressed: () {
-                  // cubit.deleteAddress(addressesModel);
+                  cubit.removeAddress(addressIndex);
                 },
-                icon: const Icon(Icons.delete , color: Colors.red,) ,
+                icon: const Icon(
+                  Icons.delete,
+                  color: Colors.red,
+                ),
                 label: const Text(
-                  'Delete',
-                  style: TextStyle(fontSize: 14, fontWeight: FontWeight.w500, color: Colors.red),
+                  StringConstants.delete,
+                  style: TextStyle(
+                    fontSize: 14,
+                    fontWeight: FontWeight.w500,
+                    color: Colors.red,
+                  ),
                 ),
               ),
             ],

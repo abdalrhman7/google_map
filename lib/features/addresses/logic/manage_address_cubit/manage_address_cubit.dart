@@ -25,24 +25,45 @@ class ManageAddressCubit extends Cubit<ManageAddressState> {
 
     savedAddresses.add(newAddress);
 
-    final List<String> encodedAddresses = savedAddresses
-        .map((address) => jsonEncode(address.toJson()))
-        .toList();
+    final List<String> encodedAddresses =
+        savedAddresses.map((address) => jsonEncode(address.toJson())).toList();
 
-    print('Saved Addresses: $encodedAddresses');
     await SharedPrefHelper.setList('addresses', encodedAddresses);
+    emit(SavedAddressSuccess());
   }
 
   Future<void> loadSavedAddresses() async {
-    final List<String> storedAddresses = await SharedPrefHelper.getList('addresses');
+    emit(LoadSavedAddressesLoading());
+    final List<String> storedAddresses =
+        await SharedPrefHelper.getList('addresses');
 
-    if (storedAddresses.isEmpty) return;
+    if (storedAddresses.isEmpty) {
+      emit(EmptySavedAddresses());
+      return;
+    }
 
     savedAddresses = storedAddresses
-        .map((encodedAddress) =>
-        AddressModel.fromJson(jsonDecode(encodedAddress) as Map<String, dynamic>))
+        .map((encodedAddress) => AddressModel.fromJson(
+            jsonDecode(encodedAddress) as Map<String, dynamic>))
         .toList();
+    emit(LoadSavedAddressesSuccess());
+  }
 
-    print('Loaded Addresses: ${savedAddresses.last.streetName}');
+  Future<void> removeAddress(int index) async {
+    savedAddresses.removeAt(index);
+    final List<String> encodedAddresses =
+        savedAddresses.map((address) => jsonEncode(address.toJson())).toList();
+    await SharedPrefHelper.setList('addresses', encodedAddresses);
+    if (savedAddresses.isEmpty) {
+      emit(EmptySavedAddresses());
+    } else {
+      emit(RemoveAddressSuccess());
+    }
+  }
+
+  void resetForm() {
+    streetNameController.clear();
+    cityNameController.clear();
+    countryNameController.clear();
   }
 }

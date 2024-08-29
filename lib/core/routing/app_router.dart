@@ -33,7 +33,7 @@ class AppRouter {
         return MaterialPageRoute(
           builder: (_) =>
               BlocProvider(
-                create: (context) => ManageAddressCubit(),
+                create: (context) => ManageAddressCubit()..loadSavedAddresses(),
                 child: const MyAddressesScreen(),
               ),
         );
@@ -43,7 +43,7 @@ class AppRouter {
           builder: (_) =>
               BlocProvider.value(
                 value: arguments as ManageAddressCubit,
-                child: AddAddressScreen(),
+                child: const AddAddressScreen(),
               ),
         );
 
