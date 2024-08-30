@@ -13,7 +13,7 @@ class BaseTextFormField extends StatelessWidget {
   final TextInputType? keyboardType;
   final Color? backgroundColor;
   final TextEditingController? controller;
-  final Function(String?) validator;
+  final FormFieldValidator<String>? validator;
   final TextAlign? textAlign;
   final int? maxLines;
   final Function? onTap;
@@ -37,7 +37,7 @@ class BaseTextFormField extends StatelessWidget {
     this.leading,
     this.textAlign,
     this.controller,
-    required this.validator,
+     this.validator,
     this.maxLines,
     this.onTap,
     this.onSubmit,
@@ -53,9 +53,7 @@ class BaseTextFormField extends StatelessWidget {
       textAlign: textAlign ?? TextAlign.center,
       controller: controller,
       enabled: enable,
-      validator: (v) {
-        return validator(v);
-      },
+      validator: validator,
       onTapOutside: (event) => FocusScope.of(context).unfocus(),
       decoration: InputDecoration(
         isDense: true,

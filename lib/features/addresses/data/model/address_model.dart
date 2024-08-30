@@ -4,13 +4,13 @@ class AddressModel {
   final String streetName;
   final String cityName;
   final String countryName;
-  //final LatLng latLng;
+  final String latLng;
 
   AddressModel({
     required this.streetName,
     required this.cityName,
     required this.countryName,
-   // required this.latLng,
+   required this.latLng,
   });
 
   factory AddressModel.fromJson(Map<String, dynamic> json) {
@@ -18,7 +18,7 @@ class AddressModel {
       streetName: json['streetName'],
       cityName: json['cityName'],
       countryName: json['countryName'],
-      //latLng: json['latLng'],
+      latLng: json['latLng'],
     );
   }
 
@@ -27,7 +27,7 @@ class AddressModel {
       'streetName': streetName,
       'cityName': cityName,
       'countryName': countryName,
-      //'latLng': latLng,
+      'latLng': latLng,
     };
   }
 }

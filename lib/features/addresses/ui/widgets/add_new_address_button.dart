@@ -16,7 +16,11 @@ class AddNewAddressButton extends StatelessWidget {
       onTap: () async {
         await context.pushNamed(
           Routes.addAddressScreen,
-          arguments: cubit,
+          arguments: {
+            'cubit': cubit,
+            'isEdit': false,
+          }
+          ,
         );
       },
       child: const SizedBox(

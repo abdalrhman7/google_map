@@ -2,18 +2,44 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/core/widgets/base_text_form_field.dart';
+import 'package:google_maps/features/addresses/data/model/address_model.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 
+class AddOrUpdateAddressScreen extends StatefulWidget {
+  const AddOrUpdateAddressScreen({super.key, required this.addressMap});
 
-class AddAddressScreen extends StatelessWidget {
-  const AddAddressScreen({super.key});
+  final Map<String, dynamic> addressMap;
+
+  @override
+  State<AddOrUpdateAddressScreen> createState() =>
+      _AddOrUpdateAddressScreenState();
+}
+
+class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
+  bool isUpdate = false;
+
+  @override
+  void initState() {
+    if (widget.addressMap['isUpdate'] == true) {
+      var cubit = context.read<ManageAddressCubit>();
+      final AddressModel addressModel = widget.addressMap['address'];
+      cubit.streetNameController.text =
+          addressModel.streetName;
+      cubit.cityNameController.text =
+          addressModel.cityName;
+      cubit.countryNameController.text =
+          addressModel.countryName;
+      isUpdate = true;
+    }
+    super.initState();
+  }
 
   @override
   Widget build(BuildContext context) {
-     var cubit = context.read<ManageAddressCubit>();
+    var cubit = context.read<ManageAddressCubit>();
     return Scaffold(
       appBar: AppBar(
-        title: const Text(StringConstants.addNewAddress),
+        title:  Text(isUpdate ? StringConstants.updateAddress : StringConstants.addNewAddress),
       ),
       body: Form(
         key: cubit.formKey,
@@ -70,7 +96,7 @@ class AddAddressScreen extends StatelessWidget {
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: StringConstants.cityNameCannotBeEmpty,
+                hintText: StringConstants.enterYourCountryName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
@@ -84,13 +110,33 @@ class AddAddressScreen extends StatelessWidget {
                 textAlign: TextAlign.start,
                 controller: cubit.countryNameController,
               ),
+              const SizedBox(height: 10),
+              const Text(
+                StringConstants.location,
+                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              ),
+              const SizedBox(height: 4),
+              BaseTextFormField(
+                hintText: 'Location',
+                hintStyle: const TextStyle(color: Colors.grey),
+                contentPadding:
+                const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
+                readOnly: true,
+                textAlign: TextAlign.start,
+                controller: cubit.locationController,
+              ),
               const Spacer(),
               InkWell(
                 onTap: () async {
                   if (cubit.formKey.currentState!.validate()) {
-                  await  cubit.saveAddress();
-                   await cubit.loadSavedAddresses();
-                  }},
+                    if (isUpdate) {
+                      await cubit.updateAddress(widget.addressMap['addressIndex']);
+                    } else {
+                      await cubit.saveAddress();
+                      await cubit.loadSavedAddresses();
+                    }
+                  }
+                },
                 child: Container(
                   width: double.infinity,
                   height: 50,
@@ -99,9 +145,11 @@ class AddAddressScreen extends StatelessWidget {
                     color: Colors.blue,
                     borderRadius: BorderRadius.circular(12),
                   ),
-                  child: const Text(
-                    StringConstants.addAddress,
-                    style: TextStyle(
+                  child: Text(
+                    isUpdate
+                        ? StringConstants.updateAddress
+                        : StringConstants.addAddress,
+                    style: const TextStyle(
                         color: Colors.white,
                         fontWeight: FontWeight.w600,
                         fontSize: 16),

@@ -15,7 +15,7 @@ class AddressCardBlocConsumer extends StatelessWidget {
     var cubit = context.read<ManageAddressCubit>();
     return BlocConsumer<ManageAddressCubit, ManageAddressState>(
       listener: (context, state) {
-        if (state is SavedAddressSuccess) {
+        if (state is SavedAddressSuccess || state is UpdateAddressSuccess) {
           cubit.resetForm();
           context.pop();
         }

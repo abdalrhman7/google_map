@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/routing/routes.dart';
 import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/features/addresses/data/model/address_model.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
@@ -56,10 +58,12 @@ class AddressCardWidget extends StatelessWidget {
             children: [
               TextButton.icon(
                 onPressed: () async {
-                  // var result = await context.pushNamed(Routes.addAddressScreen, arguments: addressesModel);
-                  // if (result != null) {
-                  //   cubit.getAddressData();
-                  // }
+                 context.pushNamed(Routes.addAddressScreen, arguments: {
+                   'cubit': cubit,
+                   'address': savedAddresses,
+                   'isEdit': true,
+                   'addressIndex': addressIndex
+                 });
                 },
                 icon: const Icon(
                   Icons.edit,

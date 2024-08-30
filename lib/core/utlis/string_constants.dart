@@ -1,4 +1,5 @@
 class StringConstants{
+  static const addressesPrefKey = 'addresses';
   static const String enableLocationErrorMessage = 'Location services are required to use this feature. Please enable location services';
   static const String locationPermissionErrorMessage = 'Location permission is required to use this feature. Please grant location permission';
   static const String googleApiKey = 'google_api_key';
@@ -20,7 +21,9 @@ class StringConstants{
   static const String enterYourCityName = 'Enter Your City Name';
   static const String cityNameCannotBeEmpty = 'City Name Cannot Be Empty';
   static const String country = 'Country';
+  static const String location = 'Location';
   static const String enterYourCountryName = 'Enter Your Country Name';
   static const String countryNameCannotBeEmpty = 'Country Name Cannot Be Empty';
   static const String addAddress = 'Add Address';
+  static const String updateAddress = 'Update Address';
 }
