@@ -11,16 +11,20 @@ class AddressCardWidget extends StatelessWidget {
     super.key,
     required this.savedAddresses,
     required this.addressIndex,
+    this.cardColor,
+    this.isClickable = true,
   });
 
   final AddressModel savedAddresses;
-
+  final Color? cardColor;
+  final bool isClickable ;
   final int addressIndex;
 
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<ManageAddressCubit>();
     return Card(
+      color: cardColor,
       child: Column(
         children: [
           ListTile(
@@ -57,14 +61,14 @@ class AddressCardWidget extends StatelessWidget {
           Row(
             children: [
               TextButton.icon(
-                onPressed: () async {
-                 context.pushNamed(Routes.addAddressScreen, arguments: {
-                   'cubit': cubit,
-                   'address': savedAddresses,
-                   'isEdit': true,
-                   'addressIndex': addressIndex
-                 });
-                },
+                onPressed: isClickable ? () async {
+                  context.pushNamed(Routes.addAddressScreen, arguments: {
+                    'cubit': cubit,
+                    'address': savedAddresses,
+                    'isEdit': true,
+                    'addressIndex': addressIndex
+                  });
+                } : null,
                 icon: const Icon(
                   Icons.edit,
                   color: Colors.green,
@@ -78,9 +82,9 @@ class AddressCardWidget extends StatelessWidget {
                 ),
               ),
               TextButton.icon(
-                onPressed: () {
+                onPressed:isClickable ? () {
                   cubit.removeAddress(addressIndex);
-                },
+                }: null,
                 icon: const Icon(
                   Icons.delete,
                   color: Colors.red,

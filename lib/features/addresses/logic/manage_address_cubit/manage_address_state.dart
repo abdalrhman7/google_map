@@ -16,3 +16,5 @@ final class RemoveAddressSuccess extends ManageAddressState {}
 final class SavedAddressSuccess extends ManageAddressState {}
 
 final class UpdateAddressSuccess extends ManageAddressState {}
+
+final class ToggleIsAddressSelected extends ManageAddressState {}

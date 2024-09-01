@@ -75,6 +75,12 @@ class SharedPrefHelper {
     await sharedPreferences.setStringList(key, list);
   }
 
+  static removeList(String key) async {
+    debugPrint('SharedPrefHelper : removeList with key : $key');
+    SharedPreferences sharedPreferences = await SharedPreferences.getInstance();
+    await sharedPreferences.remove(key);
+  }
+
 
   /// Removes a value from SharedPreferences with given [key].
   static removeData(String key) async {

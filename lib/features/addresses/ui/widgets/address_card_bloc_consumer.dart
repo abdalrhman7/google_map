@@ -5,11 +5,16 @@ import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 import 'package:google_maps/features/addresses/ui/widgets/address_card_widget.dart';
 
-class AddressCardBlocConsumer extends StatelessWidget {
+class AddressCardBlocConsumer extends StatefulWidget {
   const AddressCardBlocConsumer({
     super.key,
   });
 
+  @override
+  State<AddressCardBlocConsumer> createState() => _AddressCardBlocConsumerState();
+}
+
+class _AddressCardBlocConsumerState extends State<AddressCardBlocConsumer> {
   @override
   Widget build(BuildContext context) {
     var cubit = context.read<ManageAddressCubit>();
@@ -36,9 +41,46 @@ class AddressCardBlocConsumer extends StatelessWidget {
         return Expanded(
           child: ListView.builder(
             itemBuilder: (context, index) {
-              return AddressCardWidget(
-                savedAddresses: cubit.savedAddresses[index],
-                addressIndex: index,
+              return InkWell(
+                borderRadius: BorderRadius.circular(10),
+                onTap: () {
+                  if (cubit.selectedAddresses.isNotEmpty) {
+                    cubit.selectedAddresses
+                            .contains(cubit.savedAddresses[index])
+                        ? cubit.selectedAddresses
+                            .remove(cubit.savedAddresses[index])
+                        : cubit.selectedAddresses
+                            .add(cubit.savedAddresses[index]);
+                    if (cubit.selectedAddresses.isEmpty) {
+                      cubit.toggleIsAddressSelected();
+                    }
+                    setState(() {
+
+                    });
+                  }
+                },
+                onLongPress: () {
+                  if (cubit.selectedAddresses.isEmpty) {
+                    cubit.selectedAddresses.add(cubit.savedAddresses[index]);
+                    cubit.toggleIsAddressSelected();
+                  }
+                },
+                child: BlocBuilder<ManageAddressCubit, ManageAddressState>(
+                  buildWhen: (previous, current) =>
+                      current is ToggleIsAddressSelected,
+                  builder: (context, state) {
+                    return AddressCardWidget(
+                      savedAddresses: cubit.savedAddresses[index],
+                      addressIndex: index,
+                      cardColor: cubit.selectedAddresses
+                              .contains(cubit.savedAddresses[index])
+                          ? Colors.grey.shade400
+                          : null,
+                      isClickable:
+                          cubit.selectedAddresses.isNotEmpty ? false : true,
+                    );
+                  },
+                ),
               );
             },
             itemCount: cubit.savedAddresses.length,
