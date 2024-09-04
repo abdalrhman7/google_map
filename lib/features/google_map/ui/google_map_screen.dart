@@ -6,6 +6,7 @@ import 'package:google_maps/features/google_map/ui/widgets/get_weather_widget.da
 import 'package:google_maps/features/google_map/ui/widgets/go_to_current_location_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/google_map_bloc_builder.dart';
 import 'package:google_maps/features/google_map/ui/widgets/location_permission_error_bloc_builder.dart';
+import 'package:google_maps/features/google_map/ui/widgets/open_drawer_button.dart';
 import 'widgets/google_places_form_field_widget.dart';
 
 class GoogleMapScreen extends StatelessWidget {
@@ -53,27 +54,3 @@ class GoogleMapScreen extends StatelessWidget {
 }
 
 
-
-class OpenDrawerButton extends StatelessWidget {
-  const OpenDrawerButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () => Scaffold.of(context).openDrawer(),
-      child: Container(
-        height: 50,
-        width: 48,
-        decoration: BoxDecoration(
-            color: Colors.white,
-            shape: BoxShape.circle,
-            border: Border.all(
-              color: Colors.grey,
-            )),
-        child: const Icon(Icons.menu),
-      ),
-    );
-  }
-}

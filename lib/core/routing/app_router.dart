@@ -1,3 +1,4 @@
+import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/core/di/dependancy_injection.dart';
@@ -9,6 +10,8 @@ import 'package:google_maps/features/google_map/data/repos/weather_repo.dart';
 import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps/features/google_map/ui/google_map_screen.dart';
+import 'package:google_maps/features/splash/logic/connectivity_cubit.dart';
+import 'package:google_maps/features/splash/ui/splash_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AppRouter {
@@ -18,35 +21,39 @@ class AppRouter {
     switch (settings.name) {
       case Routes.mapScreen:
         return MaterialPageRoute(
-          builder: (_) =>
-              MultiBlocProvider(
-                providers: [
-                  BlocProvider(create: (context) => GoogleMapCubit()),
-                  BlocProvider(
-                      create: (context) =>
-                          GetWeatherCubit(getIt<WeatherRepo>())),
-                ],
-                child: const GoogleMapScreen(),
-              ),
+          builder: (_) => MultiBlocProvider(
+            providers: [
+              BlocProvider(create: (context) => GoogleMapCubit()),
+              BlocProvider(
+                  create: (context) => GetWeatherCubit(getIt<WeatherRepo>())),
+            ],
+            child: const GoogleMapScreen(),
+          ),
         );
 
       case Routes.myAddressesScreen:
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider(
-                create: (context) => ManageAddressCubit()..loadSavedAddresses(),
-                child:  MyAddressesScreen(currentLocation: arguments as LatLng),
-              ),
+          builder: (_) => BlocProvider(
+            create: (context) => ManageAddressCubit()..loadSavedAddresses(),
+            child: MyAddressesScreen(currentLocation: arguments as LatLng),
+          ),
+        );
+
+      case Routes.splashScreen:
+        return MaterialPageRoute(
+          builder: (_) => BlocProvider(
+            create: (context) => getIt<ConnectivityCubit>()..checkConnectivity(),
+            child: const SplashScreen(),
+          ),
         );
 
       case Routes.addAddressScreen:
         arguments as Map<String, dynamic>;
         return MaterialPageRoute(
-          builder: (_) =>
-              BlocProvider.value(
-                value: arguments['cubit'] as ManageAddressCubit,
-                child:  AddOrUpdateAddressScreen(addressMap: arguments),
-              ),
+          builder: (_) => BlocProvider.value(
+            value: arguments['cubit'] as ManageAddressCubit,
+            child: AddOrUpdateAddressScreen(addressMap: arguments),
+          ),
         );
 
       default:
