@@ -1,5 +1,6 @@
 
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 
 class OpenDrawerButton extends StatelessWidget {
   const OpenDrawerButton({
@@ -11,8 +12,8 @@ class OpenDrawerButton extends StatelessWidget {
     return GestureDetector(
       onTap: () => Scaffold.of(context).openDrawer(),
       child: Container(
-        height: 50,
-        width: 48,
+        height: 50.h,
+        width: 48.w,
         decoration: BoxDecoration(
             color: Colors.white,
             shape: BoxShape.circle,

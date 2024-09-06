@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 import 'package:google_maps/features/addresses/ui/widgets/add_new_address_button.dart';
 import 'package:google_maps/features/addresses/ui/widgets/address_card_bloc_consumer.dart';
@@ -33,7 +34,7 @@ class _MyAddressesScreenState extends State<MyAddressesScreen> {
           buildWhen: (previous, current) => current is ToggleIsAddressSelected,
           builder: (context, state) {
             return AppBar(
-              title: const Text('Addresses'),
+              title:  Text(context.localization.myAddresses),
               actions: [
                 cubit.isAddressSelected
                     ? IconButton(
@@ -47,7 +48,7 @@ class _MyAddressesScreenState extends State<MyAddressesScreen> {
                         onPressed: () {
                           cubit.selectAllAddress();
                         },
-                        child: const Text('Select All'))
+                        child:  Text(context.localization.selectAll))
                     : const SizedBox.shrink(),
               ],
             );

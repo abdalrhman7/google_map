@@ -1,6 +1,7 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:google_maps/core/theming/styles.dart';
 
 class CustomAlertDialog extends StatelessWidget {
   const CustomAlertDialog({
@@ -23,11 +24,7 @@ class CustomAlertDialog extends StatelessWidget {
           onPressed: onPressed,
           child: Text(
             buttonText,
-            style: const TextStyle(
-              fontSize: 14,
-              fontWeight: FontWeight.w500,
-              color: Colors.blue,
-            ),
+            style: TextStyles.font14BlackW500.copyWith(color: Colors.blue),
           ),
         ),
       ],

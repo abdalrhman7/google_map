@@ -5,6 +5,8 @@ import 'package:google_maps/features/google_map/logic/google_map_cubit/google_ma
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
 
+import '../../../../core/theming/styles.dart';
+
 class GooglePlacesFormFieldWidget extends StatefulWidget {
   const GooglePlacesFormFieldWidget({
     super.key,
@@ -35,10 +37,7 @@ class _GooglePlacesFormFieldWidgetState
           borderRadius: BorderRadius.circular(16),
           borderSide: const BorderSide(color: Colors.grey, width: 1.5),
         ),
-        hintStyle: const TextStyle(
-          fontSize: 15,
-          color: Colors.grey,
-        ),
+        hintStyle: TextStyles.font16BlackW500.copyWith(color: Colors.grey),
         hintText: 'Search Location',
         suffixIcon: cubit.searchController.text.isEmpty
             ? const Icon(Icons.search , size: 22,)

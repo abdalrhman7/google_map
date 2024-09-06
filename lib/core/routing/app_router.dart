@@ -10,6 +10,7 @@ import 'package:google_maps/features/google_map/data/repos/weather_repo.dart';
 import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps/features/google_map/ui/google_map_screen.dart';
+import 'package:google_maps/features/settings/presentation/screen/settings_screen.dart';
 import 'package:google_maps/features/splash/logic/connectivity_cubit.dart';
 import 'package:google_maps/features/splash/ui/splash_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -46,6 +47,9 @@ class AppRouter {
             child: const SplashScreen(),
           ),
         );
+
+      case Routes.settingScreen:
+        return MaterialPageRoute(builder: (context) => const SettingsScreen());
 
       case Routes.addAddressScreen:
         arguments as Map<String, dynamic>;

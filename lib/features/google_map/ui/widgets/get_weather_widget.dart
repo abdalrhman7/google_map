@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/theming/styles.dart';
 import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/features/google_map/data/models/weather_model.dart';
 import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
+import 'package:google_maps/core/theming/styles.dart';
 
 class GetWeatherWidget extends StatelessWidget {
   const GetWeatherWidget({
@@ -45,7 +49,7 @@ class WeatherLoadingPositionedWidget extends StatelessWidget {
             width: 1.2,
           ),
         ),
-        child: const Text(StringConstants.gettingWeather, style: TextStyle(fontSize: 16)),
+        child:  Text(context.localization.gettingWeather, style: const TextStyle(fontSize: 16)),
       ),
     );
   }
@@ -62,7 +66,7 @@ class WeatherLoadedPositionedWidget extends StatelessWidget {
       right: 16,
       bottom: 100,
       child: Container(
-        height: 54,
+        height: 54.h,
         alignment: Alignment.center,
         padding: const EdgeInsets.symmetric(horizontal: 12),
         decoration: BoxDecoration(
@@ -76,11 +80,8 @@ class WeatherLoadedPositionedWidget extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              '${StringConstants.currentTemp} ${weather.current!.tempC!.toStringAsFixed(0)}°C',
-              style: const TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w500,
-              ),
+              '${context.localization.currentTemp} ${weather.current!.tempC!.toStringAsFixed(0)}°C',
+              style: TextStyles.font16BlackW500,
             ),
           ],
         ),

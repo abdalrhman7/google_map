@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/core/routing/routes.dart';
+import 'package:google_maps/core/theming/styles.dart';
+import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/features/addresses/data/model/address_model.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
@@ -17,7 +19,8 @@ class AddressCardWidget extends StatelessWidget {
 
   final AddressModel savedAddresses;
   final Color? cardColor;
-  final bool isClickable ;
+  final bool isClickable;
+
   final int addressIndex;
 
   @override
@@ -33,69 +36,57 @@ class AddressCardWidget extends StatelessWidget {
               children: [
                 Text(
                   savedAddresses.streetName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                  ),
+                  style: TextStyles.font14BlackW500,
                 ),
-                const SizedBox(height: 4),
+                horizontalSpacing(4),
                 Text(
                   savedAddresses.cityName,
-                  style: const TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.grey,
-                  ),
+                  style:
+                      TextStyles.font14BlackW500.copyWith(color: Colors.grey),
                 ),
               ],
             ),
             subtitle: Text(
               savedAddresses.countryName,
-              style: const TextStyle(
-                fontSize: 14,
-                fontWeight: FontWeight.w500,
-                color: Colors.grey,
-              ),
+              style: TextStyles.font14BlackW500.copyWith(color: Colors.grey),
             ),
           ),
           Row(
             children: [
               TextButton.icon(
-                onPressed: isClickable ? () async {
-                  context.pushNamed(Routes.addAddressScreen, arguments: {
-                    'cubit': cubit,
-                    'address': savedAddresses,
-                    'isEdit': true,
-                    'addressIndex': addressIndex
-                  });
-                } : null,
+                onPressed: isClickable
+                    ? () async {
+                        context.pushNamed(Routes.addAddressScreen, arguments: {
+                          'cubit': cubit,
+                          'address': savedAddresses,
+                          'isEdit': true,
+                          'addressIndex': addressIndex
+                        });
+                      }
+                    : null,
                 icon: const Icon(
                   Icons.edit,
                   color: Colors.green,
                 ),
-                label: const Text(
-                  StringConstants.edit,
-                  style: TextStyle(
-                      fontSize: 14,
-                      fontWeight: FontWeight.w500,
-                      color: Colors.green),
+                label: Text(
+                  context.localization.edit,
+                  style:
+                      TextStyles.font14BlackW500.copyWith(color: Colors.green),
                 ),
               ),
               TextButton.icon(
-                onPressed:isClickable ? () {
-                  cubit.removeAddress(addressIndex);
-                }: null,
+                onPressed: isClickable
+                    ? () {
+                        cubit.removeAddress(addressIndex);
+                      }
+                    : null,
                 icon: const Icon(
                   Icons.delete,
                   color: Colors.red,
                 ),
-                label: const Text(
-                  StringConstants.delete,
-                  style: TextStyle(
-                    fontSize: 14,
-                    fontWeight: FontWeight.w500,
-                    color: Colors.red,
-                  ),
+                label: Text(
+                  context.localization.delete,
+                  style: TextStyles.font14BlackW500.copyWith(color: Colors.red),
                 ),
               ),
             ],

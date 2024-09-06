@@ -1,9 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/theming/styles.dart';
+import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/core/widgets/base_text_form_field.dart';
 import 'package:google_maps/features/addresses/data/model/address_model.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
+import 'package:google_maps/l10n/app_localizations.dart';
 
 class AddOrUpdateAddressScreen extends StatefulWidget {
   const AddOrUpdateAddressScreen({super.key, required this.addressMap});
@@ -39,7 +44,7 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
     var cubit = context.read<ManageAddressCubit>();
     return Scaffold(
       appBar: AppBar(
-        title:  Text(isUpdate ? StringConstants.updateAddress : StringConstants.addNewAddress),
+        title:  Text(isUpdate ? context.localization.updateAddress : context.localization.addNewAddress),
       ),
       body: Form(
         key: cubit.formKey,
@@ -48,17 +53,17 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
           child: Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              const Text(
-                StringConstants.street,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+               Text(
+                 context.localization.street,
+                style: TextStyles.font16BlackW500,
               ),
-              const SizedBox(height: 4),
+              horizontalSpacing(4),
               BaseTextFormField(
-                hintText: StringConstants.enterYourStreetName,
+                hintText: context.localization.enterYourStreetName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return StringConstants.streetNameCannotBeEmpty;
+                    return context.localization.streetNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -68,18 +73,18 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 textAlign: TextAlign.start,
                 controller: cubit.streetNameController,
               ),
-              const SizedBox(height: 10),
-              const Text(
-                StringConstants.city,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              horizontalSpacing(10),
+               Text(
+                context.localization.city,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 4),
+              horizontalSpacing(4),
               BaseTextFormField(
-                hintText: StringConstants.enterYourCityName,
+                hintText: context.localization.enterYourCityName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return StringConstants.cityNameCannotBeEmpty;
+                    return context.localization.cityNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -89,18 +94,18 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 textAlign: TextAlign.start,
                 controller: cubit.cityNameController,
               ),
-              const SizedBox(height: 10),
-              const Text(
-                StringConstants.country,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+              horizontalSpacing(10),
+               Text(
+                 context.localization.country,
+                style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: StringConstants.enterYourCountryName,
+                hintText: context.localization.enterYourCountryName,
                 hintStyle: const TextStyle(color: Colors.grey),
                 validator: (v) {
                   if (v!.isEmpty) {
-                    return StringConstants.countryNameCannotBeEmpty;
+                    return context.localization.countryNameCannotBeEmpty;
                   } else {
                     return null;
                   }
@@ -111,13 +116,13 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 controller: cubit.countryNameController,
               ),
               const SizedBox(height: 10),
-              const Text(
-                StringConstants.location,
-                style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+               Text(
+                context.localization.location,
+                style: TextStyles.font16BlackW500,
               ),
               const SizedBox(height: 4),
               BaseTextFormField(
-                hintText: 'Location',
+                hintText: context.localization.location,
                 hintStyle: const TextStyle(color: Colors.grey),
                 contentPadding:
                 const EdgeInsets.symmetric(vertical: 12, horizontal: 12),
@@ -139,7 +144,7 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 },
                 child: Container(
                   width: double.infinity,
-                  height: 50,
+                  height: 50.h,
                   alignment: Alignment.center,
                   decoration: BoxDecoration(
                     color: Colors.blue,
@@ -147,16 +152,13 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                   ),
                   child: Text(
                     isUpdate
-                        ? StringConstants.updateAddress
-                        : StringConstants.addAddress,
-                    style: const TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 16),
+                        ? context.localization.updateAddress
+                        : context.localization.addAddress,
+                    style: TextStyles.font16BlackW500.copyWith(color: Colors.white),
                   ),
                 ),
               ),
-              const SizedBox(height: 14),
+              horizontalSpacing(14),
             ],
           ),
         ),

@@ -6,6 +6,7 @@ import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:google_maps/features/google_map/data/repos/weather_repo.dart';
 import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
+import 'package:google_maps/features/settings/logic/setting_cubit.dart';
 import 'package:google_maps/features/splash/logic/connectivity_cubit.dart';
 
 
@@ -22,6 +23,8 @@ Future<void> setupGetIt() async {
 
   //splash
   getIt.registerLazySingleton(() => ConnectivityCubit());
+
+  getIt.registerLazySingleton<SettingCubit>(() => SettingCubit());
 
 
 

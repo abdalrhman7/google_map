@@ -30,11 +30,11 @@ class _AddressCardBlocConsumerState extends State<AddressCardBlocConsumer> {
           return const Expanded(
               child: Center(child: CircularProgressIndicator()));
         } else if (state is EmptySavedAddresses) {
-          return const Expanded(
+          return  Expanded(
             child: Center(
                 child: Text(
-              StringConstants.noAddressesFound,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
+                  context.localization.noAddressesFound,
+              style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             )),
           );
         }
@@ -55,7 +55,6 @@ class _AddressCardBlocConsumerState extends State<AddressCardBlocConsumer> {
                       cubit.toggleIsAddressSelected();
                     }
                     setState(() {
-
                     });
                   }
                 },

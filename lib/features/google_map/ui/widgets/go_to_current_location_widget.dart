@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 
 class GoToCurrentLocationWidget extends StatelessWidget {
@@ -28,8 +29,8 @@ class GoToCurrentLocationWidget extends StatelessWidget {
             width: 1.2,
           ),
         ),
-        height: 50,
-        width: 50,
+        height: 50.h,
+        width: 50.w,
         child: const Icon(Icons.location_on, color: Colors.red , size: 30,),
       ),
     );

@@ -1,8 +1,11 @@
 
 
 import 'package:flutter/material.dart';
+import 'package:google_maps/l10n/app_localizations.dart';
 
 extension Navigation on BuildContext {
+  AppLocalizations get localization => AppLocalizations.of(this)!;
+
   Future<dynamic> pushNamed(String routeName, {Object? arguments}) {
     return Navigator.of(this).pushNamed(routeName, arguments: arguments);
   }
