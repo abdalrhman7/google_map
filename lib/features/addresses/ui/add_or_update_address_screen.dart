@@ -57,7 +57,7 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                  context.localization.street,
                 style: TextStyles.font16BlackW500,
               ),
-              horizontalSpacing(4),
+              verticalSpacing(4),
               BaseTextFormField(
                 hintText: context.localization.enterYourStreetName,
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -73,12 +73,12 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 textAlign: TextAlign.start,
                 controller: cubit.streetNameController,
               ),
-              horizontalSpacing(10),
+              verticalSpacing(10),
                Text(
                 context.localization.city,
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              horizontalSpacing(4),
+              verticalSpacing(4),
               BaseTextFormField(
                 hintText: context.localization.enterYourCityName,
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -94,12 +94,12 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 textAlign: TextAlign.start,
                 controller: cubit.cityNameController,
               ),
-              horizontalSpacing(10),
+              verticalSpacing(10),
                Text(
                  context.localization.country,
                 style: const TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
               ),
-              const SizedBox(height: 4),
+              verticalSpacing(4),
               BaseTextFormField(
                 hintText: context.localization.enterYourCountryName,
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -115,12 +115,12 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                 textAlign: TextAlign.start,
                 controller: cubit.countryNameController,
               ),
-              const SizedBox(height: 10),
+              verticalSpacing(10),
                Text(
                 context.localization.location,
                 style: TextStyles.font16BlackW500,
               ),
-              const SizedBox(height: 4),
+              verticalSpacing(4),
               BaseTextFormField(
                 hintText: context.localization.location,
                 hintStyle: const TextStyle(color: Colors.grey),
@@ -158,7 +158,7 @@ class _AddOrUpdateAddressScreenState extends State<AddOrUpdateAddressScreen> {
                   ),
                 ),
               ),
-              horizontalSpacing(14),
+              verticalSpacing(14),
             ],
           ),
         ),

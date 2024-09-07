@@ -4,7 +4,6 @@ import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/core/routing/routes.dart';
 import 'package:google_maps/core/theming/styles.dart';
 import 'package:google_maps/core/utlis/spacing.dart';
-import 'package:google_maps/core/utlis/string_constants.dart';
 import 'package:google_maps/features/addresses/data/model/address_model.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 
@@ -38,7 +37,7 @@ class AddressCardWidget extends StatelessWidget {
                   savedAddresses.streetName,
                   style: TextStyles.font14BlackW500,
                 ),
-                horizontalSpacing(4),
+                verticalSpacing(4),
                 Text(
                   savedAddresses.cityName,
                   style:

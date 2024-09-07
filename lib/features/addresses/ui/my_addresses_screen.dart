@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage_address_cubit.dart';
 import 'package:google_maps/features/addresses/ui/widgets/add_new_address_button.dart';
 import 'package:google_maps/features/addresses/ui/widgets/address_card_bloc_consumer.dart';
@@ -55,22 +56,31 @@ class _MyAddressesScreenState extends State<MyAddressesScreen> {
           },
         ),
       ),
-      body: GestureDetector(
-        onTap: () {
+      body: WillPopScope(
+        onWillPop: () async {
           if (cubit.isAddressSelected) {
-            // cubit.clearSelectedAddresses();
+            cubit.clearSelectedAddresses();
+            return false;
           }
+          return true;
         },
-        child: const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 16),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              AddressCardBlocConsumer(),
-              SizedBox(height: 18),
-              AddNewAddressButton(),
-              SizedBox(height: 18),
-            ],
+        child: GestureDetector(
+          onTap: () {
+            if (cubit.isAddressSelected) {
+               cubit.clearSelectedAddresses();
+            }
+          },
+          child:  Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 16),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const AddressCardBlocConsumer(),
+                verticalSpacing(18),
+                const AddNewAddressButton(),
+                verticalSpacing(18),
+              ],
+            ),
           ),
         ),
       ),

@@ -31,5 +31,11 @@
   "countryNameCannotBeEmpty": "اسم البلد لا يمكن أن يكون فارغًا",
   "addAddress": "أضف عنوانًا",
   "selectAll": "تحديد الكل",
-  "updateAddress": "تحديث العنوان"  
+  "updateAddress": "تحديث العنوان",
+  "noInternetConnection": "لا يوجد اتصال بالانترنت",
+  "dismiss": "اغلاق",
+  "directions": "الاتجاهات",
+  "cancle": "الغاء",
+  "openLocation": "افتح موقع",
+  "givePermission": "اعطاء أذن"
 }

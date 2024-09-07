@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:google_maps/core/theming/styles.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 
@@ -30,17 +31,17 @@ class PositionedDistanceAndDurationWidget extends StatelessWidget {
       builder: (context, state) {
         return cubit.isLineDrawn
             ? Positioned(
-                top: top ?? 125,
+                top: top ?? 125.h,
                 right: right,
                 left: left,
                 child: SizedBox(
-                  height: 60,
+                  height: 60.h,
                   child: Card(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
                     child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 14),
+                      padding:  EdgeInsets.symmetric(horizontal: 14.w),
                       child: Row(
                         children: [
                           Icon(

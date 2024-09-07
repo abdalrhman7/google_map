@@ -1,6 +1,7 @@
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter/material.dart';
 import 'package:google_maps/core/helper/extensions.dart';
+import 'package:google_maps/core/theming/styles.dart';
 import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/features/settings/logic/setting_cubit.dart';
 
@@ -37,7 +38,7 @@ class SettingsScreen extends StatelessWidget {
                         children: [
                           Text(
                             context.localization.languages,
-                            //  style: TextStyles.font16BlackW500,
+                            style: TextStyles.font16BlackW500,
                           ),
                           const Divider(thickness: 1),
                           ListTile(
@@ -45,7 +46,7 @@ class SettingsScreen extends StatelessWidget {
                                 const EdgeInsets.symmetric(horizontal: 10),
                             title: Text(
                               context.localization.english,
-                              //  style: TextStyles.font16BlackW500,
+                              style: TextStyles.font16BlackW500,
                             ),
                             trailing: Radio(
                               value: 'en',
@@ -61,7 +62,7 @@ class SettingsScreen extends StatelessWidget {
                                 const EdgeInsets.symmetric(horizontal: 10),
                             title: Text(
                               context.localization.arabic,
-                              //  style: TextStyles.font16BlackW500,
+                              style: TextStyles.font16BlackW500,
                             ),
                             trailing: Radio(
                               value: 'ar',

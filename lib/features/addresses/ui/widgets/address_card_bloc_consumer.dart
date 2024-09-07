@@ -56,6 +56,7 @@ class _AddressCardBlocConsumerState extends State<AddressCardBlocConsumer> {
                     }
                     setState(() {
                     });
+                    print(cubit.isAddressSelected);
                   }
                 },
                 onLongPress: () {

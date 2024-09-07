@@ -12,7 +12,6 @@ class GooglePlacesFormFieldWidget extends StatefulWidget {
     super.key,
   });
 
-
   @override
   State<GooglePlacesFormFieldWidget> createState() =>
       _GooglePlacesFormFieldWidgetState();

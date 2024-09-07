@@ -35,10 +35,10 @@ class WeatherLoadingPositionedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 16,
-      bottom: 100,
+      right: 16.w,
+      bottom: 100.h,
       child: Container(
-        height: 54,
+        height: 54.h,
         alignment: Alignment.center,
         padding: const EdgeInsets.all(16),
         decoration: BoxDecoration(
@@ -63,8 +63,8 @@ class WeatherLoadedPositionedWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      right: 16,
-      bottom: 100,
+      right: 16.w,
+      bottom: 100.h,
       child: Container(
         height: 54.h,
         alignment: Alignment.center,
@@ -80,7 +80,7 @@ class WeatherLoadedPositionedWidget extends StatelessWidget {
         child: Row(
           children: [
             Text(
-              '${context.localization.currentTemp} ${weather.current!.tempC!.toStringAsFixed(0)}°C',
+              'Temp: ${weather.current!.tempC!.toStringAsFixed(0)}°C',
               style: TextStyles.font16BlackW500,
             ),
           ],

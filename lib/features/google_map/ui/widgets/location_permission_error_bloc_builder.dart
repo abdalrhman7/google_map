@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:permission_handler/permission_handler.dart';
 
@@ -9,7 +10,6 @@ class LocationPermissionErrorBlocBuilder extends StatelessWidget {
   const LocationPermissionErrorBlocBuilder({
     super.key,
   });
-
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +21,7 @@ class LocationPermissionErrorBlocBuilder extends StatelessWidget {
           return Positioned(
             child: CustomAlertDialog(
               errorMessage: state.errorMessage,
-              buttonText: 'Open Location',
+              buttonText: context.localization.openLocation,
               onPressed: () {
                 cubit.updateCurrentLocation();
               },
@@ -32,7 +32,7 @@ class LocationPermissionErrorBlocBuilder extends StatelessWidget {
           return Positioned(
             child: CustomAlertDialog(
               errorMessage: state.errorMessage,
-              buttonText: 'Give Permission',
+              buttonText: context.localization.givePermission,
               onPressed: () async {
                 bool isPermissionGranted = await openAppSettings();
                 if (isPermissionGranted) {

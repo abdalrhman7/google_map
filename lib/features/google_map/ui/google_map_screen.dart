@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/core/widgets/custom_drawer.dart';
 import 'package:google_maps/features/google_map/ui/widgets/distance_and_duration_widget.dart';
 import 'package:google_maps/features/google_map/ui/widgets/draw_route_line_bloc_builder.dart';
@@ -14,39 +16,39 @@ class GoogleMapScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      drawer: CustomDrawer(),
+    return  Scaffold(
+      drawer: const CustomDrawer(),
       body: Stack(
         children: [
-          GoogleMapBlocBuilder(),
+          const GoogleMapBlocBuilder(),
           Padding(
-            padding: EdgeInsets.only(top: 66, left: 14, right: 14),
+            padding:  EdgeInsets.only(top: 64.h, left: 14.w, right: 14.w),
             child: Row(
               children: [
-                OpenDrawerButton(),
-                SizedBox(width: 6),
-                Expanded(child: GooglePlacesFormFieldWidget()),
+                const OpenDrawerButton(),
+                verticalSpacing(4),
+                const Expanded(child: GooglePlacesFormFieldWidget()),
               ],
             ),
           ),
-          Positioned(
-            left: 16,
-            bottom: 40,
-            child: GoToCurrentLocationWidget(),
+           Positioned(
+            left: 16.w,
+            bottom: 40.h,
+            child: const GoToCurrentLocationWidget(),
           ),
-          DrawRouteLineBlocBuilder(),
-          LocationPermissionErrorBlocBuilder(),
-          PositionedDistanceAndDurationWidget(
-            right: 20,
+          const DrawRouteLineBlocBuilder(),
+          const LocationPermissionErrorBlocBuilder(),
+           PositionedDistanceAndDurationWidget(
+            right: 20.w,
             icon: Icons.directions_car_filled,
             isDistance: true,
           ),
-          PositionedDistanceAndDurationWidget(
-            left: 20,
+           PositionedDistanceAndDurationWidget(
+            left: 20.w,
             icon: Icons.access_time_filled_outlined,
             isDistance: false,
           ),
-          GetWeatherWidget()
+          const GetWeatherWidget()
         ],
       ),
     );

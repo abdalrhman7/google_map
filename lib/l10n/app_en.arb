@@ -31,5 +31,11 @@
   "countryNameCannotBeEmpty": "Country Name Cannot Be Empty",
   "addAddress": "Add Address",
   "selectAll": "Select All",
-  "updateAddress": "Update Address"
+  "updateAddress": "Update Address",
+  "noInternetConnection": "No Internet Connection",
+  "dismiss": "Dismiss",
+  "directions": "Directions",
+  "cancle": "Cancle",
+  "openLocation": "Open Location",
+  "givePermission": "Give Permission"
 }

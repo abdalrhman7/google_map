@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/core/theming/styles.dart';
+import 'package:google_maps/core/utlis/spacing.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 
 class DrawRouteLineBlocBuilder extends StatelessWidget {
@@ -20,12 +23,12 @@ class DrawRouteLineBlocBuilder extends StatelessWidget {
       builder: (context, state) {
         return cubit.isSearched
             ? GetDirectionsOrCancelDirections(
-                title: 'Directions',
+                title: context.localization.directions,
                 onPressed: cubit.drawLineAndMoveCamera,
               )
             : cubit.isLineDrawn
                 ? GetDirectionsOrCancelDirections(
-                    title: 'Cancel',
+                    title: context.localization.cancle,
                     onPressed: () async {
                       await cubit.updateCurrentLocation();
                       cubit.clearPolyLinesAndMarkers();
@@ -53,19 +56,19 @@ class GetDirectionsOrCancelDirections extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      left: 16,
-      bottom: 100,
+      left: 16.w,
+      bottom: 100.h,
       child: GestureDetector(
         onTap: onPressed,
         child: Container(
-          padding: const EdgeInsets.symmetric(horizontal: 16),
+          padding:  EdgeInsets.symmetric(horizontal: 16.w),
           decoration: BoxDecoration(
             color: Colors.blue.shade600,
             borderRadius: const BorderRadius.all(
               Radius.circular(20),
             ),
           ),
-          height: 50,
+          height: 50.h,
           alignment: Alignment.center,
           child: Row(
             children: [
@@ -75,7 +78,7 @@ class GetDirectionsOrCancelDirections extends StatelessWidget {
                       color: Colors.white,
                     )
                   : const SizedBox.shrink(),
-              isDrawLine ? const SizedBox(width: 8) : const SizedBox.shrink(),
+              isDrawLine ? horizontalSpacing(8) : const SizedBox.shrink(),
               Text(
                 title,
                 style: TextStyles.font16BlackW500.copyWith(color: Colors.white),
