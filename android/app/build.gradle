@@ -47,7 +47,7 @@ android {
         targetSdk = flutter.targetSdkVersion
         versionCode = flutterVersionCode.toInteger()
         versionName = flutterVersionName
-        manifestPlaceholders = [googleApiKey: googleApiKey, applicationName: "google"]
+        manifestPlaceholders = [googleApiKey: googleApiKey, applicationName: "Google Map"]
     }
 
     buildTypes {

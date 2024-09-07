@@ -37,5 +37,6 @@
   "directions": "الاتجاهات",
   "cancle": "الغاء",
   "openLocation": "افتح موقع",
-  "givePermission": "اعطاء أذن"
+  "givePermission": "اعطاء أذن",
+  "searchLocation": "بحث عن موقع"
 }

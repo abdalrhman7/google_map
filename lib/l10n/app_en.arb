@@ -37,5 +37,6 @@
   "directions": "Directions",
   "cancle": "Cancle",
   "openLocation": "Open Location",
-  "givePermission": "Give Permission"
+  "givePermission": "Give Permission",
+  "searchLocation": "Search Location"
 }

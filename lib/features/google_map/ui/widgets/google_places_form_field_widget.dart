@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
+import 'package:google_maps/core/helper/extensions.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:google_places_autocomplete_text_field/google_places_autocomplete_text_field.dart';
@@ -37,7 +38,7 @@ class _GooglePlacesFormFieldWidgetState
           borderSide: const BorderSide(color: Colors.grey, width: 1.5),
         ),
         hintStyle: TextStyles.font16BlackW500.copyWith(color: Colors.grey),
-        hintText: 'Search Location',
+        hintText: context.localization.searchLocation,
         suffixIcon: cubit.searchController.text.isEmpty
             ? const Icon(Icons.search , size: 22,)
             : InkWell(
