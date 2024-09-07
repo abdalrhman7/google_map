@@ -7,6 +7,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:google_maps/google_maps_app.dart';
 
 import 'package:google_maps/main.dart';
 

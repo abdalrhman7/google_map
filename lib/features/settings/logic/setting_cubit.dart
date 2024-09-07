@@ -11,7 +11,7 @@ class SettingCubit extends Cubit<SettingState> {
   String currentLanguageCode = 'en';
 
   Future<void> getSavedLanguage() async {
-    final result = SharedPrefHelper.getString('langCode');
+    final result = await SharedPrefHelper.getString('langCode');
     currentLanguageCode = result;
     log('currentLanguageCode: $currentLanguageCode');
     emit(LanguageChange(locale: Locale(currentLanguageCode)));

@@ -1,4 +1,3 @@
-import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:google_maps/core/di/dependancy_injection.dart';
@@ -7,12 +6,11 @@ import 'package:google_maps/features/addresses/logic/manage_address_cubit/manage
 import 'package:google_maps/features/addresses/ui/add_or_update_address_screen.dart';
 import 'package:google_maps/features/addresses/ui/my_addresses_screen.dart';
 import 'package:google_maps/features/google_map/data/repos/weather_repo.dart';
+import 'package:google_maps/features/google_map/logic/connectivity_cubit/connectivity_cubit.dart';
 import 'package:google_maps/features/google_map/logic/get_weather_cubit/get_weather_cubit.dart';
 import 'package:google_maps/features/google_map/logic/google_map_cubit/google_map_cubit.dart';
 import 'package:google_maps/features/google_map/ui/google_map_screen.dart';
 import 'package:google_maps/features/settings/presentation/screen/settings_screen.dart';
-import 'package:google_maps/features/splash/logic/connectivity_cubit.dart';
-import 'package:google_maps/features/splash/ui/splash_screen.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 
 class AppRouter {
@@ -27,6 +25,7 @@ class AppRouter {
               BlocProvider(create: (context) => GoogleMapCubit()),
               BlocProvider(
                   create: (context) => GetWeatherCubit(getIt<WeatherRepo>())),
+              BlocProvider(create: (context) => ConnectivityCubit()..checkConnectivity()),
             ],
             child: const GoogleMapScreen(),
           ),
@@ -40,13 +39,13 @@ class AppRouter {
           ),
         );
 
-      case Routes.splashScreen:
-        return MaterialPageRoute(
-          builder: (_) => BlocProvider(
-            create: (context) => getIt<ConnectivityCubit>()..checkConnectivity(),
-            child: const SplashScreen(),
-          ),
-        );
+      // case Routes.splashScreen:
+      //   return MaterialPageRoute(
+      //     builder: (_) => BlocProvider(
+      //       create: (context) => getIt<ConnectivityCubit>()..checkConnectivity(),
+      //       child: const SplashScreen(),
+      //     ),
+      //   );
 
       case Routes.settingScreen:
         return MaterialPageRoute(builder: (context) => const SettingsScreen());
