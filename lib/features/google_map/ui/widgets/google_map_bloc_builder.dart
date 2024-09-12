@@ -32,6 +32,7 @@ class GoogleMapBlocBuilder extends StatelessWidget {
             zoom: 0,
           ),
           markers: googleMapCubit.markers,
+          zoomControlsEnabled: false,
         );
       },
     );
