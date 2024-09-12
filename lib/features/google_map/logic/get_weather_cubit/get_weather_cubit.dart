@@ -12,7 +12,7 @@ class GetWeatherCubit extends Cubit<GetWeatherState> {
  final  WeatherRepo weatherRepo;
 
 
-  void getWeather({LatLng? latLng}) async {
+  Future<void> getWeather({LatLng? latLng}) async {
     emit(GetWeatherLoading());
     var result = await weatherRepo.getWeather('${latLng!.latitude},${latLng.longitude}');
     result.when(

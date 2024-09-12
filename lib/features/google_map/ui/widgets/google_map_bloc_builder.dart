@@ -25,7 +25,9 @@ class GoogleMapBlocBuilder extends StatelessWidget {
           onMapCreated: (controller) async {
             googleMapCubit.mapController = controller;
             await googleMapCubit.updateCurrentLocation();
-            weatherCubit.getWeather(latLng: googleMapCubit.currentLocation);
+            await weatherCubit.getWeather(
+              latLng: googleMapCubit.currentLocation,
+            );
           },
           initialCameraPosition: const CameraPosition(
             target: LatLng(0, 0),
